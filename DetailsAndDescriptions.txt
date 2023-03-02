@@ -1,0 +1,39 @@
+Note -
+Spring uses reflections class of java so, it creates PROXY object for interface like any interface implementing CRUDREPOSITORY   
+
+1. you can use any external database server like MySql i have used this.
+2. embedded server is H2,HSQL and Derby but if you use external server like MySql then you have to configure MySql Database server 
+in application.properties but if you using External database server then find out the version you installed that version you give in 
+dependency (pom.xml) else you will get error for configuring this.
+3. i had 8.0.31 but i have not given version and so get error to configure it even i have configured all details in
+ application.properties but when i wrote the version in dependency of MySql in pom.xml then all was right.
+ 
+=============================================================================================
+
+JPA is an ORM(object relational mapping) tool specification and HIBERNATE ,OPEN JPA are an example of implementing JPA
+
+you can create custom methods when you JPA and one important thing when you spring data JPA then you don't need to get HIBERNATE 
+dependency ,it has already present in it if you using Spring Tool Suite
+
+you can create custom method in JPA as well
+
+# link for how to create custom method in JPA
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+
+some examples are :-
+
+findByName,findByNameAndCity, findByDateBefore, findByFirstname, findByFirstnameOrLastname,findByNameIn,findByNameStartingWith etc.
+
+
+=============================================================================================
+
+you can create any method and just above that method use query annotation and pass query as string in annotation,when you will call
+method just below the query annotation ,the string present in query annotation will be executed like below as an example
+
+@Query("select u from User u")            
+	public List<User> findAl(String p);
+
+
+@Query("select u from User u where u.name= :n")     //Through colon you can provide variable at runtime and binding through @Param
+	public List<User> getUserByName(@Param("n") String name);
+===============================================Thank You=======================================================================
